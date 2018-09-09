@@ -1,13 +1,13 @@
-const express = require("express");
-const exphbs = require("express-handlebars");
-const path = require("path");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const mongoose = require("mongoose");
-const fs = require("fs");
-const db = require("./models");
-const app = express();
-const PORT = process.env.PORT || 3000;
+var express = require("express");
+var exphbs = require("express-handlebars");
+var path = require("path");
+var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
+var fs = require("fs");
+var db = require("./models");
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,17 +25,17 @@ app.engine(
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "views"));
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/mongoArtHeadlines";
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
-fs.readdirSync('./controllers').forEach(function (file) {
-  if(file.substr(-3) == '.js') {
-      route = require('./controllers/' + file);
-      route.controller(app);
+fs.readdirSync("./controllers").forEach(function (file) {
+  if(file.substr(-3) == ".js") {
+    route = require("./controllers/" + file);
+    route.controller(app);
   }
 });
 

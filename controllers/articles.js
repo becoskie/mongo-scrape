@@ -1,13 +1,13 @@
-const db = require("../models");
-const mongoose = require("mongoose");
-const request = require("request");
-const cheerio = require("cheerio");
+var db = require("../models");
+var mongoose = require("mongoose");
+var request = require("request");
+var cheerio = require("cheerio");
 module.exports.controller = function(app) {
   app.get("/scrape", (req, res) => {
-    request("http://www.echojs.com/", function(error, response, html) {
+    request("https://adtmag.com/pages/topic-pages/web-dev.aspx", function(error, response, html) {
       if (!error && response.statusCode == 200) {
         var $ = cheerio.load(html);
-        $("article h2").each(function(i, element) {
+        $("#ph_pcontent2_0_divListBox h3").each(function(i, element) {
           // Save an empty result object
           var result = {};
 

@@ -4,10 +4,10 @@ var request = require("request");
 var cheerio = require("cheerio");
 module.exports.controller = function(app) {
   app.get("/scrape", (req, res) => {
-    request("https://adtmag.com/pages/topic-pages/web-dev.aspx", function(error, response, html) {
+    request("https://www.theverge.com/", function(error, response, html) {
       if (!error && response.statusCode == 200) {
         var $ = cheerio.load(html);
-        $("#ph_pcontent2_0_divListBox h3").each(function(i, element) {
+        $(".c-entry-box--compact__body h2").each(function(i, element) {
           // Save an empty result object
           var result = {};
 
@@ -38,8 +38,18 @@ module.exports.controller = function(app) {
   app.get("/", function(req, res) {
     db.Article.find({}).then(function(data) {
       res.render("index", {
-        project: data
+        content: data
       });
     });
   });
+
+  app.get("/clear", function(req, res) {
+    db.Article.remove().then(function(data) {
+      res.render("index", {
+        content: data
+      });
+    });
+  });
+
+  
 };

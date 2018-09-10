@@ -26,7 +26,7 @@ app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "views"));
 
 var MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/mongoArtHeadlines";
+  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;

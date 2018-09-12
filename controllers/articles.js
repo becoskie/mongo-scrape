@@ -43,6 +43,14 @@ module.exports.controller = function(app) {
     });
   });
 
+  app.get("/saved", function(req, res) {
+    db.Article.find({ saved: { $in: true } }).then(function(data) {
+      res.render("saved", {
+        content: data
+      });
+    });
+  });
+
   app.put("/save/:id", function(req, res) {
     db.Article.updateOne({ _id: req.params.id }, { $set: { saved: true }}, function(
       err,

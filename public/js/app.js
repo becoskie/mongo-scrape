@@ -29,13 +29,13 @@ $(document).ready(function() {
 
   $(".save_btn").on("click", function(event) {
     event.preventDefault();
-    console.log($(this).attr("data-id"));
+    const data_id = $(this).attr("data-id");
     $.ajax({
       method: "PUT",
-      url: "/save/" + $(this).attr("data-id"),
+      url: "/save/" + data_id,
       saved: true
     }).then(function() {
-      window.location.href = "/";
+      $(`#${data_id}`).hide();
     });
   });
 }); // end document

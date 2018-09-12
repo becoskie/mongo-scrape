@@ -37,7 +37,7 @@
 </div>
 
 {{#each content}} {{#unless saved}}
-<div>
+<div id="{{this._id}}">
     <a href="{{this.link}}" target="_blank">{{this.title}}</a>
     <button class= "save_btn" data-id="{{this._id}}">Save Article</button>
 </div>

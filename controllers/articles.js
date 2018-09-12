@@ -18,7 +18,7 @@ module.exports.controller = function(app) {
           result.link = $(this)
             .children("a")
             .attr("href");
-
+          result.saved = false;
           // Create a new Article using the `result` object built from scraping
           db.Article.create(result)
             .then(function(dbArticle) {

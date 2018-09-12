@@ -13,7 +13,6 @@ $(document).ready(function() {
       });
   });
 
-  
   $(".scrape-new").on("click", function(event) {
     event.preventDefault();
     console.log("clicked!");
@@ -26,5 +25,17 @@ $(document).ready(function() {
         console.log(data);
         window.location.href = "/";
       });
+  });
+
+  $(".save_btn").on("click", function(event) {
+    event.preventDefault();
+    console.log($(this).attr("data-id"));
+    $.ajax({
+      method: "PUT",
+      url: "/save/" + $(this).attr("data-id"),
+      saved: true
+    }).then(function() {
+      window.location.href = "/";
+    });
   });
 }); // end document

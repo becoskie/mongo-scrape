@@ -43,6 +43,21 @@ module.exports.controller = function(app) {
     });
   });
 
+  app.put("/save/:id", function(req, res) {
+    db.Article.updateOne({ _id: req.params.id }, { $set: { saved: true }}, function(
+      err,
+      result
+    ) {
+      if (err) {
+        console.log(err);
+      }
+    }).then(function(data) {
+      res.render("index", {
+        content: data
+      });
+    });
+  });
+
   app.get("/clear", function(req, res) {
     db.Article.remove().then(function(data) {
       res.render("index", {
@@ -50,6 +65,4 @@ module.exports.controller = function(app) {
       });
     });
   });
-
-  
 };

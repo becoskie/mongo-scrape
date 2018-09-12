@@ -36,9 +36,9 @@
   </div>
 </div>
 
-{{#each content}}
+{{#each content}} {{#unless saved}}
 <div>
     <a href="{{this.link}}" target="_blank">{{this.title}}</a>
-    <button id="{{this._id}}">Save Article</button>
+    <button class= "save_btn" data-id="{{this._id}}">Save Article</button>
 </div>
-{{/each}}
+{{/unless}}{{/each}}

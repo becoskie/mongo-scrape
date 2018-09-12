@@ -73,4 +73,16 @@ module.exports.controller = function(app) {
       });
     });
   });
+
+  app.put("/deleteSaved/:id", function(req,res) {
+    db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: false }}, function(err,result) {
+      if (err) {
+        console.log(err);
+      }
+    }).then(function(data) {
+      res.render("saved", {
+        content: data
+      });
+    });
+  });
 };

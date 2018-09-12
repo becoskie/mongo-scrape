@@ -33,9 +33,19 @@ $(document).ready(function() {
     $.ajax({
       method: "PUT",
       url: "/save/" + data_id,
-      saved: true
     }).then(function() {
       $(`#${data_id}`).hide();
     });
   });
+
+  $(".delete").on("click", function(event) {
+    event.preventDefault();
+    const target = $(this).parents(':eq(2)').attr("data-_id");
+    $.ajax({
+      method: "PUT",
+      url: "/deleteSaved/" + target,
+    }).then(function() {
+      $(`div > [data-_id="${target}"]`).hide();
+    });
+  })
 }); // end document

@@ -52,14 +52,15 @@ module.exports.controller = function(app) {
   });
 
   app.put("/save/:id", function(req, res) {
-    db.Article.updateOne({ _id: req.params.id }, { $set: { saved: true }}, function(
-      err,
-      result
-    ) {
-      if (err) {
-        console.log(err);
+    db.Article.updateOne(
+      { _id: req.params.id },
+      { $set: { saved: true } },
+      function(err, result) {
+        if (err) {
+          console.log(err);
+        }
       }
-    }).then(function(data) {
+    ).then(function(data) {
       res.render("index", {
         content: data
       });
@@ -74,15 +75,41 @@ module.exports.controller = function(app) {
     });
   });
 
-  app.put("/deleteSaved/:id", function(req,res) {
-    db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: false }}, function(err,result) {
-      if (err) {
-        console.log(err);
+  app.put("/deleteSaved/:id", function(req, res) {
+    db.Article.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { saved: false } },
+      function(err, result) {
+        if (err) {
+          console.log(err);
+        }
       }
-    }).then(function(data) {
+    ).then(function(data) {
       res.render("saved", {
         content: data
       });
     });
   });
+
+  app.post("/noteSaved/:id", function(req, res) {
+    // Create a new note and pass the req.body to the entry
+    console.log(req.body)
+    db.Note.create(req.body)
+      .then(function(dbNote) {
+        return db.Article.findOneAndUpdate(
+          { _id: req.params.id },
+          { note: dbNote._id },
+          { new: true }
+        );
+      })
+      .then(function(dbArticle) {
+        // If we were able to successfully update an Article, send it back to the client
+        console.log(dbArticle)
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+ });
 };

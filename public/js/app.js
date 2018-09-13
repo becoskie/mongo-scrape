@@ -48,4 +48,18 @@ $(document).ready(function() {
       $(`div > [data-_id="${target}"]`).hide();
     });
   })
+
+  $(".save_note").on('click', function(e) {
+    e.preventDefault();
+    const target = $(this).attr("data-target");
+    console.log(target);
+    $.ajax({
+      method: "POST",
+      url: "/noteSaved/" + target,
+      data: {
+        body: $("#new_note").val().trim()
+      }
+    });
+
+  });
 }); // end document

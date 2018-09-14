@@ -69,6 +69,21 @@ $(document).ready(function() {
     });
   });
 
+  $(".note-delete").on("click", function(e) {
+    e.preventDefault();
+    const target = $(this).attr("data-delete");
+    $("#noteItem_" + target).hide();
+    $.ajax({
+      method: "PUT",
+      url: "/deleteNote/" + target
+    }).then(function() {
+      $("#Modal_" + target).on("hidden.bs.modal", function(e) {
+        // note.val('');
+        location.reload();
+      });
+    });
+  });
+
   // $(".article_notes").on("click", function(e) {
   //   e.preventDefault();
   //   const target = $(this).parents(':eq(2)').attr("data-_id");
@@ -77,5 +92,4 @@ $(document).ready(function() {
   //     url: "/scrape"
   //   })
   // });
-
 }); // end document

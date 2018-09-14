@@ -73,7 +73,7 @@
                         <hr>
                         <ul class="list-group note-container">
                             {{#each note}}
-                            <li class="list-group-item note">{{this.body}}<button class="btn btn-danger note-delete">x</button></li>
+                            <li id="noteItem_{{_id}}" class="list-group-item note">{{this.body}}<button class="btn note-delete" data-delete="{{this._id}}"><i class="fas fa-trash-alt" style="font-size:24px;color:#ff5e57"></i></button></li>
                             {{/each}}
                             {{!-- <li class="list-group-item note">{{note.[0].body}}<button class="btn btn-danger note-delete">x</button></li> --}}
                         </ul>

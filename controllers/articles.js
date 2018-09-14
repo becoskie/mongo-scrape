@@ -94,6 +94,21 @@ module.exports.controller = function(app) {
     });
   });
 
+  
+
+  app.put("/deleteNote/:id", function(req, res) {
+    db.Note.findByIdAndRemove({ _id: req.params.id }, function(err, result) {
+        if (err) {
+          console.log(err);
+        }
+      }
+    ).then(function(data) {
+      res.render("saved", {
+        content: data
+      });
+    });
+  });
+
   app.post("/noteSaved/:id", function(req, res) {
     // Create a new note and pass the req.body to the entry
     console.log(req.body)

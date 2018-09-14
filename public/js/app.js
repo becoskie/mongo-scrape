@@ -57,9 +57,11 @@ $(document).ready(function() {
       method: "POST",
       url: "/noteSaved/" + target,
       data: {
-        body: $("#new_note").val().trim()
+        body: $("#new_note").val().trim(),
       }
+    }).then(function() {
+      $("#new_note").val("");
+      location.reload();
     });
-
   });
 }); // end document

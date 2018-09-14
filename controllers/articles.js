@@ -98,9 +98,9 @@ module.exports.controller = function(app) {
     // Create a new note and pass the req.body to the entry
     console.log(req.body)
     db.Note.create(req.body)
-      .then(function(dbNote) {
-        return db.Article.findOneAndUpdate({}, { $push: { note: dbNote._id } }, { new: true });
-      })
+    .then(function(dbNote) {
+      return db.Article.findOneAndUpdate({_id: req.params.id}, { $push: { note: dbNote._id } }, { new: true });
+    })
       .then(function(dbArticle) {
         // If we were able to successfully update an Article, send it back to the client
         console.log(dbArticle)
@@ -112,3 +112,6 @@ module.exports.controller = function(app) {
       });
  });
 };
+
+
+

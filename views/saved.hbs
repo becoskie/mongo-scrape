@@ -48,7 +48,7 @@
             <h3>
                 <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{link}}">{{title}}</a>
                 <a class="btn btn-danger delete">Delete From Saved</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_{{_id}}">
+                <button type="button" class="btn btn-primary article_notes" data-toggle="modal" data-target="#Modal_{{_id}}">
                     Article Notes
                 </button>
             </h3>
@@ -77,7 +77,7 @@
                             {{/each}}
                             {{!-- <li class="list-group-item note">{{note.[0].body}}<button class="btn btn-danger note-delete">x</button></li> --}}
                         </ul>
-                        <textarea id="new_note" placeholder="New Note" rows="4" cols="60"></textarea>
+                        <textarea id="noteId_{{_id}}" placeholder="New Note" rows="4" cols="60"></textarea>
                         <button class="btn btn-success save_note" data-target="{{_id}}">Save Note</button>
                     </div>
                 </div>

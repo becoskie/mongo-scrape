@@ -32,7 +32,7 @@ $(document).ready(function() {
     const data_id = $(this).attr("data-id");
     $.ajax({
       method: "PUT",
-      url: "/save/" + data_id,
+      url: "/save/" + data_id
     }).then(function() {
       $(`#${data_id}`).hide();
     });
@@ -40,28 +40,42 @@ $(document).ready(function() {
 
   $(".delete").on("click", function(event) {
     event.preventDefault();
-    const target = $(this).parents(':eq(2)').attr("data-_id");
+    const target = $(this)
+      .parents(":eq(2)")
+      .attr("data-_id");
     $.ajax({
       method: "PUT",
-      url: "/deleteSaved/" + target,
+      url: "/deleteSaved/" + target
     }).then(function() {
       $(`div > [data-_id="${target}"]`).hide();
     });
-  })
+  });
 
-  $(".save_note").on('click', function(e) {
+  $(".save_note").on("click", function(e) {
     e.preventDefault();
     const target = $(this).attr("data-target");
-    console.log(target);
+    const note = $("#noteId_" + target).val();
     $.ajax({
       method: "POST",
       url: "/noteSaved/" + target,
       data: {
-        body: $("#new_note").val().trim(),
+        body: note.trim()
       }
     }).then(function() {
-      $("#new_note").val("");
-      location.reload();
+      $("#Modal_" + target).on("hidden.bs.modal", function(e) {
+        // note.val('');
+        location.reload();
+      });
     });
   });
+
+  // $(".article_notes").on("click", function(e) {
+  //   e.preventDefault();
+  //   const target = $(this).parents(':eq(2)').attr("data-_id");
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/scrape"
+  //   })
+  // });
+
 }); // end document

@@ -43,12 +43,12 @@
 </div>
 {{#each content}}
 <div class="container-fluid article-container">
-    <div data-_id={{this._id}} class="card">
+    <div data-_id={{_id}} class="card">
         <div class="card-header">
             <h3>
-                <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.link}}">{{this.title}}</a>
+                <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{link}}">{{title}}</a>
                 <a class="btn btn-danger delete">Delete From Saved</a>
-                <button type="button" class="btn btn-primary notes_view" data-toggle="modal" data-target="{{this._id}}">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_{{_id}}">
                     Article Notes
                 </button>
             </h3>
@@ -56,12 +56,12 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="Modal_{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="Modal_{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -69,15 +69,16 @@
             <div class="modal-body">
                 <div class="bootbox-body">
                     <div class="container-fluid text-center">
-                        <h4>Notes For: {{this.title}}</h4>
+                        <h4>Notes For: {{title}}</h4>
                         <hr>
                         <ul class="list-group note-container">
-                            <li class="list-group-item note">werasdf<button class="btn btn-danger note-delete">x</button></li>
-                            <li class="list-group-item note">test<button class="btn btn-danger note-delete">x</button></li>
-                            <li class="list-group-item note">{{this.note.body}}<button class="btn btn-danger note-delete">x</button></li>
+                            {{#each note}}
+                            <li class="list-group-item note">{{this.body}}<button class="btn btn-danger note-delete">x</button></li>
+                            {{/each}}
+                            {{!-- <li class="list-group-item note">{{note.[0].body}}<button class="btn btn-danger note-delete">x</button></li> --}}
                         </ul>
                         <textarea id="new_note" placeholder="New Note" rows="4" cols="60"></textarea>
-                        <button class="btn btn-success save_note" data-target="{{this._id}}">Save Note</button>
+                        <button class="btn btn-success save_note" data-target="{{_id}}">Save Note</button>
                     </div>
                 </div>
             </div>

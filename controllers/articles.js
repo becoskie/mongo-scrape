@@ -44,7 +44,10 @@ module.exports.controller = function(app) {
   });
 
   app.get("/saved", function(req, res) {
-    db.Article.find({ saved: { $in: true } }).then(function(data) {
+    db.Article.find({ saved: { $in: true } })
+    .populate("note")
+    .then(function(data) {
+      console.log(data);
       res.render("saved", {
         content: data
       });
@@ -96,11 +99,7 @@ module.exports.controller = function(app) {
     console.log(req.body)
     db.Note.create(req.body)
       .then(function(dbNote) {
-        return db.Article.findOneAndUpdate(
-          { _id: req.params.id },
-          { note: dbNote._id },
-          { new: true }
-        );
+        return db.Article.findOneAndUpdate({}, { $push: { note: dbNote._id } }, { new: true });
       })
       .then(function(dbArticle) {
         // If we were able to successfully update an Article, send it back to the client

@@ -18,7 +18,7 @@ $(document).ready(function() {
     console.log("clicked!");
     $.ajax({
       method: "GET",
-      url: "/scrape"
+      url: "/newScrape"
     })
       // With that done, add the note information to the page
       .then(function(data) {
@@ -84,12 +84,8 @@ $(document).ready(function() {
     });
   });
 
-  // $(".article_notes").on("click", function(e) {
-  //   e.preventDefault();
-  //   const target = $(this).parents(':eq(2)').attr("data-_id");
-  //   $.ajax({
-  //     method: "GET",
-  //     url: "/scrape"
-  //   })
-  // });
+  $(".save_note").attr("disabled", "true");
+  $(".savedNoteText").keyup(function() {
+    $(".save_note").removeAttr("disabled");
+  });
 }); // end document

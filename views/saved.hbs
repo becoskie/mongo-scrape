@@ -35,12 +35,12 @@
         <p>Saved Scraping</p>
     </div>
 </div>
-
+{{#if content}}
 <div class="caption">
-    <h1>Saved Articles</h1>
-    <p>Your Saved Articles</p>
+    <h1>Your Saved Articles</h1>
 </div>
 </div>
+
 {{#each content}}
 <div class="container-fluid article-container">
     <div data-_id={{_id}} class="card">
@@ -77,7 +77,7 @@
                             {{/each}}
                             {{!-- <li class="list-group-item note">{{note.[0].body}}<button class="btn btn-danger note-delete">x</button></li> --}}
                         </ul>
-                        <textarea id="noteId_{{_id}}" placeholder="New Note" rows="4" cols="60"></textarea>
+                        <textarea id="noteId_{{_id}}" class="savedNoteText" placeholder="New Note" rows="4" cols="60"></textarea>
                         <button class="btn btn-success save_note" data-target="{{_id}}">Save Note</button>
                     </div>
                 </div>
@@ -86,3 +86,10 @@
     </div>
 </div>
 {{/each}}
+{{/if}}
+
+{{#unless content}}
+<div>
+    <h1>You have no saved articles.</h1>
+</div>
+{{/unless}}

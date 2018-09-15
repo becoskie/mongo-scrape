@@ -1,95 +1,72 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">The Verge Scraper</a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<article id="page-cards home" class="page-section">
+    <section class="layout-cards container">
+        <div class="row justify-content-center">
+            <div class="col-10">
 
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/saved">Saved Articles</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-danger scrape-new">SCRAPE NEW ARTICLES!</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-danger clear">CLEAR ARTICLES!</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<div class="jumbotron text-center">
-    <div class="overlay">
-    </div>
-    <div class="background-image">
-    </div>
-    <div class="caption">
-        <h1>The Verge</h1>
-        <p>Saved Scraping</p>
-    </div>
-</div>
-{{#if content}}
-<div class="caption">
-    <h1>Your Saved Articles</h1>
-</div>
-</div>
-
-{{#each content}}
-<div class="container-fluid article-container">
-    <div data-_id={{_id}} class="card">
-        <div class="card-header">
-            <h3>
-                <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{link}}">{{title}}</a>
-                <a class="btn btn-danger delete">Delete From Saved</a>
-                <button type="button" class="btn btn-primary article_notes" data-toggle="modal" data-target="#Modal_{{_id}}">
-                    Article Notes
-                </button>
-            </h3>
-        </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="Modal_{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">
-                    <div class="container-fluid text-center">
-                        <h4>Notes For: {{title}}</h4>
-                        <hr>
-                        <ul class="list-group note-container">
-                            {{#each note}}
-                            <li id="noteItem_{{_id}}" class="list-group-item note">{{this.body}}<button class="btn note-delete" data-delete="{{this._id}}"><i class="fas fa-trash-alt" style="font-size:24px;color:#ff5e57"></i></button></li>
-                            {{/each}}
-                            {{!-- <li class="list-group-item note">{{note.[0].body}}<button class="btn btn-danger note-delete">x</button></li> --}}
-                        </ul>
-                        <textarea id="noteId_{{_id}}" class="savedNoteText" placeholder="New Note" rows="4" cols="60"></textarea>
-                        <button class="btn btn-success save_note" data-target="{{_id}}">Save Note</button>
+                {{#if content}}
+                <div class="row justify-content-center">
+                    <div class="container col-10 text-center">
+                        <h1>Your Saved Articles</h1>
                     </div>
                 </div>
+
+                {{#each content}}
+                <div class="card-deck" data-_id={{_id}}>
+                    <section class="card my-3">
+                        <div id="{{this._id}}" class="card-body">
+                            <a class="article-link mr-3" target="_blank" href="{{link}}">{{title}}</a>
+                            <button type="button" class="btn btn-info article_notes" data-toggle="modal" data-target="#Modal_{{_id}}">
+                                Article Notes
+                            </button>
+                            <a class="btn delete"><i class="fas fa-trash-alt" style="font-size:32px;color:#ff5e57"></i></a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="Modal_{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="bootbox-body">
+                                    <div class="container-fluid text-center">
+                                        <h4>Notes For: {{title}}</h4>
+                                        <hr>
+                                        <ul class="list-group note-container">
+                                            {{#each note}}
+                                            <li id="noteItem_{{_id}}" class="list-group-item note">{{this.body}}<button
+                                                    class="btn note-delete" data-delete="{{this._id}}"><i class="fas fa-trash-alt"
+                                                        style="font-size:24px;color:#ff5e57"></i></button></li>
+                                            {{/each}}
+                                        </ul>
+                                        <textarea id="noteId_{{_id}}" class="savedNoteText" placeholder="New Note" rows="4"
+                                            cols="60"></textarea>
+                                        <button class="btn btn-success save_note" data-target="{{_id}}">Save Note</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                {{/if}}
+
             </div>
         </div>
-    </div>
-</div>
-{{/each}}
-{{/if}}
+    </section>
+</article>
 
 {{#unless content}}
-<div>
-    <h1>You have no saved articles.</h1>
+<div class="row justify-content-center">
+    <div class="container col-10 text-center">
+        <h1>You have no saved articles.</h1>
+    </div>
 </div>
 {{/unless}}

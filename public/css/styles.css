@@ -1,5 +1,87 @@
-textarea {
-    padding: 10px;
-    resize: none;
-    width: 100%;
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,900|Source+Serif+Pro');
+:root {
+  /* --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #868e96;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #868e96;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; 
+  */
+  --font-family-sans-serif:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Nunito+Sans", "Anton", Arial, "Lucida Grande", sans-serif;
+  --font-family-serif: "Source+Serif+Pro", serif;
+  --font-family-text: var(--font-family-serif);
+  --gray: #7d7d7d;
+  --gray-dark: #2C3A47;
+  --color-text: var(--gray-dark);
 }
+.family-sans {
+  font-family: var(--font-family-sans-serif);
+}
+body {
+  font-family: var(--font-family-sans-serif);
+  font-weight: 200;
+  color: var(--color-text);
+  position: relative;
+}
+
+a {
+  color: var(--gray);
+}
+a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+textarea {
+  padding: 10px;
+  resize: none;
+  width: 100%;
+}
+body {
+    
+}
+.jumbotron {
+  background-image: url("../images/wall.jpeg");
+  background-size: cover;
+  margin-top: 75px;
+}
+
+
+
+.navbar-custom {  
+    background-color:white;
+}
+
+/* change the brand and text color */
+/* */
+
+.btn-grey {
+    background-color: #212322;
+}
+
+.nav-item {
+    padding: 0 5px;
+}
+

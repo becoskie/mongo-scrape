@@ -48,6 +48,7 @@ $(document).ready(function() {
       url: "/deleteSaved/" + target
     }).then(function() {
       $(`div > [data-_id="${target}"]`).hide();
+      location.reload();
     });
   });
 

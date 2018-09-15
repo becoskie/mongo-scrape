@@ -14,9 +14,9 @@ Collect all your favorite news articles from the Verge and save them in one conv
 
 ## Features
 - Separate files for server logic, data, views, and routing
-- Features saving articles and notes
+- User can save articles and notes
 - Complete CRUD application
-- By using Cheerios, this app can be easily modified to scrape any site.
+- By using Cheerios, this app can be easily modified to scrape any site
 
 ## The Build
 
@@ -27,19 +27,19 @@ Collect all your favorite news articles from the Verge and save them in one conv
 - HTML
 - Bootstrap
 - Body-Parser
-- Cheerio
+- Cheerios
 - Express-Handlebars
 - Mongoose
 - Mongo
 - Request
 
 ## Code
-- The `server.js` file sets up the Express server, the port for both local and `heroku`deployment, npm packages that need to be loaded, and the appropriate routes
-- The `server.js` file along with handlebars takes care of the front end as well as the back end.
-- The saved route stores the users saved articles.
-- A modal is toggled, to create notes for a saved article.
-- Javascript handles all the requests with AJAX.
-- Mongo schemas set up for Mongoose to handle the data.
+- The `server.js` file sets up the Express server, the port for both local and `heroku` deployment, npm packages that need to be loaded, and the appropriate routes
+- The `server.js` file along with handlebars takes care of the front end as well as the back end
+- The saved route stores the user's saved articles
+- A modal is toggled to create notes for a saved article
+- Javascript handles all the requests with AJAX
+- Mongo schemas set up for Mongoose to handle the data
 
 ```js
 {
